@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "315ku6vKhKuorFyixS9m5LlzQNq3SVmcYZm5a4Y3LDWHcH00f+2snWbroR7G6Ncn5LnZeP58Jofxr03McsvACw==",
+  "dgSpecHash": "mp0nEe9nQtb7Pv3ynp4687C6Eh2dazbmMS43dvp8CP44CdOw/ELWMoEy6UUw42zR7nUejAH1HDsQHDhf8Lw/ew==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hoang\\source\\repos\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.csproj",
+  "projectFilePath": "C:\\Users\\hoang\\OneDrive\\Máy tính\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hoang\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\hoang\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

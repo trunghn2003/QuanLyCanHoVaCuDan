@@ -1,131 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using QuanLyCanHoVaCuDan.Data;
-using QuanLyCuDan.Model;
+﻿using Microsoft.AspNetCore.Mvc;
 using QuanLyCanHoVaCuDan.Dto;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace QuanLyCanHoVaCuDan.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class ApartmentsController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ApartmentsController : ControllerBase
+    private readonly IApartmentService _apartmentService;
+
+    public ApartmentsController(IApartmentService apartmentService)
     {
-        private readonly QuanLyCanHoVaCuDanContext _context;
+        _apartmentService = apartmentService;
+    }
 
-        public ApartmentsController(QuanLyCanHoVaCuDanContext context)
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<ApartmentDto>>> GetApartments()
+    {
+        return Ok(await _apartmentService.GetAllApartmentsAsync());
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<ApartmentDto>> GetApartment(int id)
+    {
+        var apartment = await _apartmentService.GetApartmentByIdAsync(id);
+        if (apartment == null)
         {
-            _context = context;
+            return NotFound();
         }
+        return apartment;
+    }
 
-        private static ApartmentDto ApartmentToDto(Apartment apartment)
+    [HttpPost]
+    public async Task<ActionResult<ApartmentDto>> PostApartment(ApartmentDto apartmentDto)
+    {
+        var newApartment = await _apartmentService.CreateApartmentAsync(apartmentDto);
+        return CreatedAtAction(nameof(GetApartment), new { id = newApartment.ApartmentID }, newApartment);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutApartment(int id, ApartmentDto apartmentDto)
+    {
+        if (!await _apartmentService.UpdateApartmentAsync(id, apartmentDto))
         {
-            return new ApartmentDto
-            {
-                ApartmentID = apartment.ApartmentID,
-                UnitNumber = apartment.UnitNumber,
-                Floor = apartment.Floor,
-                Size = apartment.Size
-            };
+            return NotFound();
         }
+        return NoContent();
+    }
 
-        // GET: api/Apartments
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<ApartmentDto>>> GetApartment()
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteApartment(int id)
+    {
+        if (!await _apartmentService.DeleteApartmentAsync(id))
         {
-            return await _context.Apartment
-                .Select(a => ApartmentToDto(a))
-                .ToListAsync();
+            return NotFound();
         }
-
-        // GET: api/Apartments/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ApartmentDto>> GetApartment(int id)
-        {
-            var apartment = await _context.Apartment.FindAsync(id);
-
-            if (apartment == null)
-            {
-                return NotFound();
-            }
-
-            return ApartmentToDto(apartment);
-        }
-
-        // PUT: api/Apartments/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutApartment(int id, ApartmentDto apartmentDto)
-        {
-            var apartment = await _context.Apartment.FindAsync(id);
-            if (apartment == null)
-            {
-                return NotFound();
-            }
-
-            apartment.UnitNumber = apartmentDto.UnitNumber;
-            apartment.Floor = apartmentDto.Floor;
-            apartment.Size = apartmentDto.Size;
-
-            _context.Entry(apartment).State = EntityState.Modified;
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ApartmentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Apartments
-        [HttpPost]
-        public async Task<ActionResult<ApartmentDto>> PostApartment(ApartmentDto apartmentDto)
-        {
-            var apartment = new Apartment
-            {
-                UnitNumber = apartmentDto.UnitNumber,
-                Floor = apartmentDto.Floor,
-                Size = apartmentDto.Size
-            };
-
-            _context.Apartment.Add(apartment);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetApartment", new { id = apartment.ApartmentID }, ApartmentToDto(apartment));
-        }
-
-        // DELETE: api/Apartments/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteApartment(int id)
-        {
-            var apartment = await _context.Apartment.FindAsync(id);
-            if (apartment == null)
-            {
-                return NotFound();
-            }
-
-            _context.Apartment.Remove(apartment);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool ApartmentExists(int id)
-        {
-            return _context.Apartment.Any(e => e.ApartmentID == id);
-        }
+        return NoContent();
     }
 }

@@ -8269,11 +8269,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hoang\\source\\repos\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.csproj",
+      "projectUniqueName": "C:\\Users\\hoang\\OneDrive\\Máy tính\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.csproj",
       "projectName": "QuanLyCanHoVaCuDan",
-      "projectPath": "C:\\Users\\hoang\\source\\repos\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.csproj",
+      "projectPath": "C:\\Users\\hoang\\OneDrive\\Máy tính\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.csproj",
       "packagesPath": "C:\\Users\\hoang\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hoang\\source\\repos\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan\\obj\\",
+      "outputPath": "C:\\Users\\hoang\\OneDrive\\Máy tính\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hoang\\AppData\\Roaming\\NuGet\\NuGet.Config",

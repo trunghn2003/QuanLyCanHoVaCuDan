@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using QuanLyCanHoVaCuDan.Data;
+using QuanLyCanHoVaCuDan.Repositories.Interface;
+using QuanLyCanHoVaCuDan.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<QuanLyCanHoVaCuDanContext>(options =>
@@ -9,6 +11,13 @@ builder.Services.AddDbContext<QuanLyCanHoVaCuDanContext>(options =>
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<IApartmentRepository, ApartmentRepository>();
+builder.Services.AddScoped<IApartmentService, ApartmentService>();
+builder.Services.AddScoped<ICitizenRepository, CitizenRepository>();
+builder.Services.AddScoped<ICitizenService, CitizenService>();
+builder.Services.AddScoped<ICitizenApartmentRepository, CitizenApartmentRepository>();
+builder.Services.AddScoped<ICitizenApartmentService, CitizenApartmentService>();
 
 var app = builder.Build();
 
