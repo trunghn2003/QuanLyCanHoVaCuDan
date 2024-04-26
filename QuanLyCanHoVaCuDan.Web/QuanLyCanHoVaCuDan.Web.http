@@ -1,0 +1,6 @@
+@QuanLyCanHoVaCuDan.Web_HostAddress = http://localhost:5158
+
+GET {{QuanLyCanHoVaCuDan.Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

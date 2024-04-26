@@ -1,0 +1,160 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\hoang\\OneDrive\\Máy tính\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.BLL\\QuanLyCanHoVaCuDan.BLL.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\hoang\\OneDrive\\Máy tính\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.BLL\\QuanLyCanHoVaCuDan.BLL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\hoang\\OneDrive\\Máy tính\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.BLL\\QuanLyCanHoVaCuDan.BLL.csproj",
+        "projectName": "QuanLyCanHoVaCuDan.BLL",
+        "projectPath": "C:\\Users\\hoang\\OneDrive\\Máy tính\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.BLL\\QuanLyCanHoVaCuDan.BLL.csproj",
+        "packagesPath": "C:\\Users\\hoang\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hoang\\OneDrive\\Máy tính\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.BLL\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\hoang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://gitlab.yootek.com.vn:60009/api/v4/projects/45/packages/nuget/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\hoang\\OneDrive\\Máy tính\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.DAL\\QuanLyCanHoVaCuDan.DAL.csproj": {
+                "projectPath": "C:\\Users\\hoang\\OneDrive\\Máy tính\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.DAL\\QuanLyCanHoVaCuDan.DAL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\hoang\\OneDrive\\Máy tính\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.DAL\\QuanLyCanHoVaCuDan.DAL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\hoang\\OneDrive\\Máy tính\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.DAL\\QuanLyCanHoVaCuDan.DAL.csproj",
+        "projectName": "QuanLyCanHoVaCuDan.DAL",
+        "projectPath": "C:\\Users\\hoang\\OneDrive\\Máy tính\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.DAL\\QuanLyCanHoVaCuDan.DAL.csproj",
+        "packagesPath": "C:\\Users\\hoang\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hoang\\OneDrive\\Máy tính\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.DAL\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\hoang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://gitlab.yootek.com.vn:60009/api/v4/projects/45/packages/nuget/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
