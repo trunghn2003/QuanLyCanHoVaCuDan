@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\QuanLyCanHoVaCuDan.Web.props" />
+</Project>

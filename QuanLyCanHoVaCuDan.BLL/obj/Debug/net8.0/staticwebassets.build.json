@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "ZtCTcxWzHa6g6iOu/FjRJxqUgeH8LAJ1aX/MyFsMHKc=",
+  "Source": "QuanLyCanHoVaCuDan.BLL",
+  "BasePath": "_content/QuanLyCanHoVaCuDan.BLL",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\hoang\\OneDrive\\Máy tính\\QuanLyCanHoVaCuDan\\QuanLyCanHoVaCuDan.DAL\\QuanLyCanHoVaCuDan.DAL.csproj",
+      "Version": 2,
+      "Source": "QuanLyCanHoVaCuDan.DAL",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QuanLyCanHoVaCuDan.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+769e78aa63a8047d57e773b2b00adef20a3783aa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7c90745cfc04b00ea769c1bdfa3c956b939c788")]
 [assembly: System.Reflection.AssemblyProductAttribute("QuanLyCanHoVaCuDan.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QuanLyCanHoVaCuDan.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
