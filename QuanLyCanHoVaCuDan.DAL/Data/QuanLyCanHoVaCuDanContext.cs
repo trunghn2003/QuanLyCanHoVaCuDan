@@ -9,6 +9,10 @@ namespace QuanLyCanHoVaCuDan.Data
 {
     public class QuanLyCanHoVaCuDanContext : DbContext
     {
+        public QuanLyCanHoVaCuDanContext()
+        {
+
+        }
         public QuanLyCanHoVaCuDanContext (DbContextOptions<QuanLyCanHoVaCuDanContext> options)
             : base(options)
         {

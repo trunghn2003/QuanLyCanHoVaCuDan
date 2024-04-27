@@ -9,7 +9,10 @@ using QuanLyCanHoVaCuDan.Repositories.Interface;
 public class CitizenService : ICitizenService
 {
     private readonly ICitizenRepository _citizenRepository;
-
+    public CitizenService()
+    {
+        _citizenRepository = new CitizenRepository(new QuanLyCanHoVaCuDan.Data.QuanLyCanHoVaCuDanContext());
+    }
     public CitizenService(ICitizenRepository citizenRepository)
     {
         _citizenRepository = citizenRepository;
@@ -55,6 +58,7 @@ public class CitizenService : ICitizenService
         };
 
         await _citizenRepository.AddAsync(citizen);
+        await _citizenRepository.SaveAsync();
 
         citizenDto.CitizenId = citizen.CitizenId;
         return citizenDto;
@@ -72,6 +76,8 @@ public class CitizenService : ICitizenService
         citizen.DOB = citizenDto.DOB;
 
         await _citizenRepository.UpdateAsync(citizen);
+        await _citizenRepository.SaveAsync();
+
         return true;
     }
 
@@ -82,6 +88,8 @@ public class CitizenService : ICitizenService
             return false;
 
         await _citizenRepository.DeleteAsync(citizen);
+        await _citizenRepository.SaveAsync();
+
         return true;
     }
 }

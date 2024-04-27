@@ -5,7 +5,7 @@ namespace QuanLyCuDan.Model
     public class Apartment
     {
         [Key]
-        public int ApartmentID { get; set; }
+        public int ApartmentId { get; set; }
         public string UnitNumber { get; set; }
         public int Floor { get; set; }
         public double Size { get; set; }

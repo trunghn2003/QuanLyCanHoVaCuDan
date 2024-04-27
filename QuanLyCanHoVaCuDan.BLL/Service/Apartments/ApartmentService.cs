@@ -6,19 +6,22 @@ using System.Threading.Tasks;
 
 public class ApartmentService : IApartmentService
 {
-    private readonly IApartmentRepository _apartmentRepository;
-
-    public ApartmentService(IApartmentRepository apartmentRepository)
+    private readonly IApartmentRepository _repository;
+    public ApartmentService()
     {
-        _apartmentRepository = apartmentRepository;
+        _repository = new ApartmentRepository(new QuanLyCanHoVaCuDan.Data.QuanLyCanHoVaCuDanContext());
+    }
+    public ApartmentService(IApartmentRepository repository)
+    {
+        _repository = repository;
     }
 
     public async Task<List<ApartmentDto>> GetAllApartmentsAsync()
     {
-        var apartments = await _apartmentRepository.GetAllAsync();
+        var apartments = await _repository.GetAllAsync();
         return apartments.Select(a => new ApartmentDto
         {
-            ApartmentID = a.ApartmentID,
+            ApartmentID = a.ApartmentId,
             UnitNumber = a.UnitNumber,
             Floor = a.Floor,
             Size = a.Size
@@ -27,12 +30,12 @@ public class ApartmentService : IApartmentService
 
     public async Task<ApartmentDto> GetApartmentByIdAsync(int id)
     {
-        var apartment = await _apartmentRepository.GetByIdAsync(id);
+        var apartment = await _repository.GetByIdAsync(id);
         if (apartment == null)
             return null;
         return new ApartmentDto
         {
-            ApartmentID = apartment.ApartmentID,
+            ApartmentID = apartment.ApartmentId,
             UnitNumber = apartment.UnitNumber,
             Floor = apartment.Floor,
             Size = apartment.Size
@@ -47,31 +50,35 @@ public class ApartmentService : IApartmentService
             Floor = apartmentDto.Floor,
             Size = apartmentDto.Size
         };
-        await _apartmentRepository.AddAsync(apartment);
-        apartmentDto.ApartmentID = apartment.ApartmentID;
+        await _repository.AddAsync(apartment);
+        await _repository.SaveAsync();
+        apartmentDto.ApartmentID = apartment.ApartmentId;
         return apartmentDto;
     }
 
     public async Task<bool> UpdateApartmentAsync(int id, ApartmentDto apartmentDto)
     {
-        var apartment = await _apartmentRepository.GetByIdAsync(id);
+        var apartment = await   _repository.GetByIdAsync(id);
         if (apartment == null)
             return false;
 
         apartment.UnitNumber = apartmentDto.UnitNumber;
         apartment.Floor = apartmentDto.Floor;
         apartment.Size = apartmentDto.Size;
-        await _apartmentRepository.UpdateAsync(apartment);
+        await _repository.UpdateAsync(apartment);
+        await _repository.SaveAsync();
+
         return true;
     }
 
     public async Task<bool> DeleteApartmentAsync(int id)
     {
-        var apartment = await _apartmentRepository.GetByIdAsync(id);
+        var apartment = await _repository.GetByIdAsync(id);
         if (apartment == null)
             return false;
 
-        await _apartmentRepository.DeleteAsync(apartment);
+         await _repository.DeleteAsync(apartment);
+        await _repository.SaveAsync();
         return true;
     }
 }

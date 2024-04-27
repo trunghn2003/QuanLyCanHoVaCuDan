@@ -5,6 +5,10 @@ using QuanLyCuDan.Model;
 public class CitizenApartmentService : ICitizenApartmentService
 {
     private readonly ICitizenApartmentRepository _repository;
+    public CitizenApartmentService()
+    {
+        _repository = new CitizenApartmentRepository(new QuanLyCanHoVaCuDan.Data.QuanLyCanHoVaCuDanContext());
+    }
 
     public CitizenApartmentService(ICitizenApartmentRepository repository)
     {
@@ -24,21 +28,28 @@ public class CitizenApartmentService : ICitizenApartmentService
     public async Task<IEnumerable<CitizenApartment>> GetCitizensByApartmentAsync(int apartmentId)
     {
         return await _repository.GetCitizensByApartmentAsync(apartmentId);
+
     }
 
     public async Task AddCitizenApartmentAsync(CitizenApartment citizenApartment)
     {
         await _repository.AddCitizenApartmentAsync(citizenApartment);
+        await _repository.SaveAsync();
+
     }
 
     public async Task UpdateCitizenApartmentAsync(CitizenApartment citizenApartment)
     {
         await _repository.UpdateCitizenApartmentAsync(citizenApartment);
+        await _repository.SaveAsync();
+
     }
 
     public async Task DeleteCitizenApartmentAsync(int citizenId, int apartmentId)
     {
         await _repository.DeleteCitizenApartmentAsync(citizenId, apartmentId);
+        await _repository.SaveAsync();
+
     }
 
     public async Task<bool> CitizenApartmentExistsAsync(int citizenId, int apartmentId)

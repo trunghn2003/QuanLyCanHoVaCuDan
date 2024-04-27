@@ -10,6 +10,9 @@ namespace QuanLyCanHoVaCuDan.Repositories.Interface
         Task UpdateAsync(Citizen citizen);
         Task DeleteAsync(Citizen citizen);
         bool Exists(int id);
+        Task SaveAsync();
+
+
     }
 
 }

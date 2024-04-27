@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using QuanLyCuDan.Model;
 using QuanLyCanHoVaCuDan.Data;
 
-public class CitizenApartmentRepository : ICitizenApartmentRepository
+public class CitizenApartmentRepository : ICitizenApartmentRepository, IDisposable
 {
     private readonly QuanLyCanHoVaCuDanContext _context;
 
@@ -60,5 +60,30 @@ public class CitizenApartmentRepository : ICitizenApartmentRepository
     {
         return await _context.CitizenApartment
             .AnyAsync(e => e.CitizenId == citizenId && e.ApartmentID == apartmentId);
+    }
+   
+    private bool disposed = false;
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!this.disposed)
+        {
+            if (disposing)
+            {
+                _context.Dispose();
+            }
+        }
+        this.disposed = true;
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    public Task SaveAsync()
+    {
+        throw new NotImplementedException();
     }
 }
