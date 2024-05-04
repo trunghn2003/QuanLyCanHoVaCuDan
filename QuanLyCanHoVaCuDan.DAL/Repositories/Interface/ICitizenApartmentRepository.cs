@@ -4,6 +4,7 @@ using QuanLyCuDan.Model;
 
 public interface ICitizenApartmentRepository: IDisposable
 {
+    Task<IEnumerable<CitizenApartment>> GetAllCitizenApartmentsAsync();
     Task<CitizenApartment> GetCitizenApartmentAsync(int citizenId, int apartmentId);
     Task<IEnumerable<CitizenApartment>> GetApartmentsByCitizenAsync(int citizenId);
     Task<IEnumerable<CitizenApartment>> GetCitizensByApartmentAsync(int apartmentId);

@@ -13,6 +13,10 @@ public class CitizenApartmentRepository : ICitizenApartmentRepository, IDisposab
     {
         _context = context;
     }
+    public async Task<IEnumerable<CitizenApartment>> GetAllCitizenApartmentsAsync()
+    {
+        return await _context.CitizenApartment.ToListAsync();
+    }
 
     public async Task<CitizenApartment> GetCitizenApartmentAsync(int citizenId, int apartmentId)
     {
@@ -37,13 +41,13 @@ public class CitizenApartmentRepository : ICitizenApartmentRepository, IDisposab
     public async Task AddCitizenApartmentAsync(CitizenApartment citizenApartment)
     {
         _context.CitizenApartment.Add(citizenApartment);
-        await _context.SaveChangesAsync();
+        await SaveAsync();
     }
 
     public async Task UpdateCitizenApartmentAsync(CitizenApartment citizenApartment)
     {
         _context.Entry(citizenApartment).State = EntityState.Modified;
-        await _context.SaveChangesAsync();
+        await SaveAsync();
     }
 
     public async Task DeleteCitizenApartmentAsync(int citizenId, int apartmentId)
@@ -52,7 +56,7 @@ public class CitizenApartmentRepository : ICitizenApartmentRepository, IDisposab
         if (citizenApartment != null)
         {
             _context.CitizenApartment.Remove(citizenApartment);
-            await _context.SaveChangesAsync();
+            await SaveAsync();
         }
     }
 
@@ -82,8 +86,8 @@ public class CitizenApartmentRepository : ICitizenApartmentRepository, IDisposab
         GC.SuppressFinalize(this);
     }
 
-    public Task SaveAsync()
+    public async Task SaveAsync()
     {
-        throw new NotImplementedException();
+        await _context.SaveChangesAsync();
     }
 }
