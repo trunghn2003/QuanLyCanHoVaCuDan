@@ -31,6 +31,14 @@ public class CitizensController : ControllerBase
         }
         return citizen;
     }
+    [HttpGet("{apartmentId}/Apartment")]
+    public async Task<ActionResult<IEnumerable<CitizenDto>>> GetCitizensByApartmentId(int apartmentId)
+    {
+        
+        var citizens = await _citizenService.GetCitizensByApartmentId(apartmentId);
+        
+        return (citizens);
+    }
 
     [HttpPost]
     public async Task<ActionResult<CitizenDto>> PostCitizen(CitizenDto citizenDto)
