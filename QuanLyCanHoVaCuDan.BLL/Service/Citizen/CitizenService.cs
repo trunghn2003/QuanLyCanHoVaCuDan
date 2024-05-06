@@ -9,14 +9,16 @@ using QuanLyCanHoVaCuDan.Repositories.Interface;
 public class CitizenService : ICitizenService
 {
     private readonly ICitizenRepository _citizenRepository;
+    private readonly IApartmentRepository _apartmentRepository;
     public CitizenService()
     {
         _citizenRepository = new CitizenRepository(new QuanLyCanHoVaCuDan.Data.QuanLyCanHoVaCuDanContext());
     }
-    public CitizenService(ICitizenRepository citizenRepository)
+    public CitizenService(ICitizenRepository citizenRepository, IApartmentRepository apartmentRepository)
     {
         _citizenRepository = citizenRepository;
-    }
+        _apartmentRepository = apartmentRepository;
+    }   
 
     public async Task<List<CitizenDto>> GetAllCitizensAsync()
     {
@@ -92,4 +94,25 @@ public class CitizenService : ICitizenService
 
         return true;
     }
+
+    public async Task<List<CitizenDto>> GetCitizensByApartmentId(int id)
+    {
+        var apartment = await _apartmentRepository.GetByIdAsync(id);
+        if (apartment == null)
+            return new List<CitizenDto>();
+
+        // Retrieve citizens for the given apartment
+        var citizens = await _citizenRepository.GetCitizensByApartmentIdAsync(id);
+
+        // Convert entities to DTOs
+        return citizens.Select(c => new CitizenDto
+        {
+            CitizenId = c.CitizenId,
+            Name = c.Name,
+            PhoneNumber = c.PhoneNumber,
+            Email = c.Email,
+            DOB = c.DOB
+        }).ToList();
+    }
+
 }
