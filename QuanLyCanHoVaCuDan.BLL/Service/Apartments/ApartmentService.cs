@@ -21,7 +21,7 @@ public class ApartmentService : IApartmentService
         var apartments = await _repository.GetAllAsync();
         return apartments.Select(a => new ApartmentDto
         {
-            ApartmentID = a.ApartmentId,
+            ApartmentId = a.ApartmentId,
             UnitNumber = a.UnitNumber,
             Floor = a.Floor,
             Size = a.Size
@@ -35,7 +35,7 @@ public class ApartmentService : IApartmentService
             return null;
         return new ApartmentDto
         {
-            ApartmentID = apartment.ApartmentId,
+            ApartmentId = apartment.ApartmentId,
             UnitNumber = apartment.UnitNumber,
             Floor = apartment.Floor,
             Size = apartment.Size
@@ -52,7 +52,7 @@ public class ApartmentService : IApartmentService
         };
         await _repository.AddAsync(apartment);
         await _repository.SaveAsync();
-        apartmentDto.ApartmentID = apartment.ApartmentId;
+        apartmentDto.ApartmentId = apartment.ApartmentId;
         return apartmentDto;
     }
 
