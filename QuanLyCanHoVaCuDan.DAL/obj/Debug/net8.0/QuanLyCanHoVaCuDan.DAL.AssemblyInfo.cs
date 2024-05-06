@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QuanLyCanHoVaCuDan.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7c90745cfc04b00ea769c1bdfa3c956b939c788")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+235adfe548db800d381e1d321498198e963401f9")]
 [assembly: System.Reflection.AssemblyProductAttribute("QuanLyCanHoVaCuDan.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QuanLyCanHoVaCuDan.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

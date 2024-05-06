@@ -15,7 +15,16 @@ builder.Services.AddDbContext<QuanLyCanHoVaCuDanContext>(options =>
 
 builder.Services.AddControllers();
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigins",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:3000")
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
 
 builder.Services.AddScoped<IApartmentRepository, ApartmentRepository>();
 builder.Services.AddScoped<IApartmentService, ApartmentService>();
@@ -35,7 +44,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
-
+app.UseCors("AllowSpecificOrigins");
 app.UseAuthorization();
 
 app.MapControllers();

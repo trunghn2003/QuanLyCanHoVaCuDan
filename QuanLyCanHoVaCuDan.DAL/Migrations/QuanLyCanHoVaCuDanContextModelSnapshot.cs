@@ -42,7 +42,7 @@ namespace QuanLyCanHoVaCuDan.Migrations
 
                     b.HasKey("ApartmentID");
 
-                    b.ToTable("Apartment");
+                    b.ToTable("Apartment", (string)null);
                 });
 
             modelBuilder.Entity("QuanLyCuDan.Model.Citizen", b =>
@@ -70,7 +70,7 @@ namespace QuanLyCanHoVaCuDan.Migrations
 
                     b.HasKey("CitizenId");
 
-                    b.ToTable("Citizen");
+                    b.ToTable("Citizen", (string)null);
                 });
 
             modelBuilder.Entity("QuanLyCuDan.Model.CitizenApartment", b =>
@@ -99,7 +99,7 @@ namespace QuanLyCanHoVaCuDan.Migrations
 
                     b.HasIndex("CitizenId");
 
-                    b.ToTable("CitizenApartment");
+                    b.ToTable("CitizenApartment", (string)null);
                 });
 
             modelBuilder.Entity("QuanLyCuDan.Model.CitizenApartment", b =>

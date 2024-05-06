@@ -110,6 +110,26 @@
   },
   {
     "ContainingType": "CitizenApartmentController",
+    "Method": "GetAllCitizenApartments",
+    "RelativePath": "api/CitizenApartment",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[QuanLyCanHoVaCuDan.Dto.CitizenApartmentDto, QuanLyCanHoVaCuDan.BLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CitizenApartmentController",
     "Method": "PostCitizenApartment",
     "RelativePath": "api/CitizenApartment",
     "HttpMethod": "POST",
@@ -117,14 +137,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "citizenApartment",
-        "Type": "QuanLyCuDan.Model.CitizenApartment",
+        "Name": "citizenApartmentDto",
+        "Type": "QuanLyCanHoVaCuDan.Dto.CitizenApartmentDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "QuanLyCuDan.Model.CitizenApartment",
+        "Type": "QuanLyCanHoVaCuDan.Dto.CitizenApartmentDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -155,7 +175,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "QuanLyCuDan.Model.CitizenApartment",
+        "Type": "QuanLyCanHoVaCuDan.Dto.CitizenApartmentDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -184,8 +204,8 @@
         "IsRequired": true
       },
       {
-        "Name": "citizenApartment",
-        "Type": "QuanLyCuDan.Model.CitizenApartment",
+        "Name": "citizenApartmentDto",
+        "Type": "QuanLyCanHoVaCuDan.Dto.CitizenApartmentDto",
         "IsRequired": true
       }
     ],
@@ -228,7 +248,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[QuanLyCuDan.Model.CitizenApartment, QuanLyCanHoVaCuDan.DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[QuanLyCanHoVaCuDan.Dto.CitizenApartmentDto, QuanLyCanHoVaCuDan.BLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -254,7 +274,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[QuanLyCuDan.Model.CitizenApartment, QuanLyCanHoVaCuDan.DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[QuanLyCanHoVaCuDan.Dto.CitizenApartmentDto, QuanLyCanHoVaCuDan.BLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -301,6 +321,32 @@
     "ReturnTypes": [
       {
         "Type": "QuanLyCanHoVaCuDan.Dto.CitizenDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CitizensController",
+    "Method": "GetCitizensByApartmentId",
+    "RelativePath": "api/Citizens/{apartmentId}/Apartment",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "apartmentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[QuanLyCanHoVaCuDan.Dto.CitizenDto, QuanLyCanHoVaCuDan.BLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

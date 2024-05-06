@@ -35,7 +35,7 @@ public class ApartmentsController : ControllerBase
     public async Task<ActionResult<ApartmentDto>> PostApartment(ApartmentDto apartmentDto)
     {
         var newApartment = await _apartmentService.CreateApartmentAsync(apartmentDto);
-        return CreatedAtAction(nameof(GetApartment), new { id = newApartment.ApartmentID }, newApartment);
+        return CreatedAtAction(nameof(GetApartment), new { id = newApartment.ApartmentId }, newApartment);
     }
 
     [HttpPut("{id}")]
