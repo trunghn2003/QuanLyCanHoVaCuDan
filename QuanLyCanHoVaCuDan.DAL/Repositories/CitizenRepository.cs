@@ -71,5 +71,13 @@ namespace QuanLyCanHoVaCuDan.Repositories
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        public async Task<List<Citizen>> GetCitizensByApartmentIdAsync(int id)
+        {
+            return await _context.CitizenApartment
+             .Where(ca => ca.ApartmentID == id)
+             .Select(ca => ca.Citizen)
+             .ToListAsync();
+        }
     }
 }
