@@ -4,25 +4,20 @@ using QuanLyCanHoVaCuDan.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using QuanLyCanHoVaCuDan.Repositories.Interface;
+using QuanLyCanHoVaCuDan.DAL.Repositories;
 
 public class CitizenService : ICitizenService
 {
-    private readonly ICitizenRepository _citizenRepository;
-    private readonly IApartmentRepository _apartmentRepository;
-    public CitizenService()
+    private readonly UnitOfWork _unitOfWork;
+    public CitizenService(UnitOfWork unitOfWork)
     {
-        _citizenRepository = new CitizenRepository(new QuanLyCanHoVaCuDan.Data.QuanLyCanHoVaCuDanContext());
+        _unitOfWork = unitOfWork;
     }
-    public CitizenService(ICitizenRepository citizenRepository, IApartmentRepository apartmentRepository)
-    {
-        _citizenRepository = citizenRepository;
-        _apartmentRepository = apartmentRepository;
-    }   
+    
 
     public async Task<List<CitizenDto>> GetAllCitizensAsync()
     {
-        var citizens = await _citizenRepository.GetAllAsync();
+        var citizens = await _unitOfWork.CitizenRepository.GetAllAsync();
         return citizens.Select(c => new CitizenDto
         {
             CitizenId = c.CitizenId,
@@ -35,7 +30,7 @@ public class CitizenService : ICitizenService
 
     public async Task<CitizenDto> GetCitizenByIdAsync(int id)
     {
-        var citizen = await _citizenRepository.GetByIdAsync(id);
+        var citizen = await _unitOfWork.CitizenRepository.GetByIdAsync(id);
         if (citizen == null)
             return null;
 
@@ -59,8 +54,8 @@ public class CitizenService : ICitizenService
             DOB = citizenDto.DOB
         };
 
-        await _citizenRepository.AddAsync(citizen);
-        await _citizenRepository.SaveAsync();
+        await _unitOfWork.CitizenRepository.AddAsync(citizen);
+        await _unitOfWork.CitizenRepository.SaveAsync();
 
         citizenDto.CitizenId = citizen.CitizenId;
         return citizenDto;
@@ -68,7 +63,7 @@ public class CitizenService : ICitizenService
 
     public async Task<bool> UpdateCitizenAsync(int id, CitizenDto citizenDto)
     {
-        var citizen = await _citizenRepository.GetByIdAsync(id);
+        var citizen = await _unitOfWork.CitizenRepository.GetByIdAsync(id);
         if (citizen == null)
             return false;
 
@@ -77,32 +72,32 @@ public class CitizenService : ICitizenService
         citizen.Email = citizenDto.Email;
         citizen.DOB = citizenDto.DOB;
 
-        await _citizenRepository.UpdateAsync(citizen);
-        await _citizenRepository.SaveAsync();
+        await _unitOfWork.CitizenRepository.UpdateAsync(citizen);
+        await _unitOfWork.CitizenRepository.SaveAsync();
 
         return true;
     }
 
     public async Task<bool> DeleteCitizenAsync(int id)
     {
-        var citizen = await _citizenRepository.GetByIdAsync(id);
+        var citizen = await _unitOfWork.CitizenRepository.GetByIdAsync(id);
         if (citizen == null)
             return false;
 
-        await _citizenRepository.DeleteAsync(citizen);
-        await _citizenRepository.SaveAsync();
+        await _unitOfWork.CitizenRepository.DeleteAsync(citizen);
+        await _unitOfWork.CitizenRepository.SaveAsync();
 
         return true;
     }
 
     public async Task<List<CitizenDto>> GetCitizensByApartmentId(int id)
     {
-        var apartment = await _apartmentRepository.GetByIdAsync(id);
+        var apartment = await _unitOfWork.ApartmentRepository.GetByIdAsync(id);
         if (apartment == null)
             return new List<CitizenDto>();
 
         // Retrieve citizens for the given apartment
-        var citizens = await _citizenRepository.GetCitizensByApartmentIdAsync(id);
+        var citizens = await _unitOfWork.CitizenRepository.GetCitizensByApartmentIdAsync(id);
 
         // Convert entities to DTOs
         return citizens.Select(c => new CitizenDto
