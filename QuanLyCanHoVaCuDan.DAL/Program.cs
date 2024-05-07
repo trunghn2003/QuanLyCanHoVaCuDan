@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using QuanLyCanHoVaCuDan.Data;
-using QuanLyCanHoVaCuDan.Repositories.Interface;
 using QuanLyCanHoVaCuDan.Repositories;
 using QuanLyCuDan.Model;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
