@@ -4,24 +4,23 @@ using System.Threading.Tasks;
 using QuanLyCuDan.Model;
 using QuanLyCanHoVaCuDan.Dto;
 using Microsoft.EntityFrameworkCore;
+using QuanLyCanHoVaCuDan.DAL.Repositories;
 public class CitizenApartmentService : ICitizenApartmentService
 {
-    private readonly ICitizenApartmentRepository _repository;
+    private readonly UnitOfWork _unitOfWork;
+
 
     // Constructor without DI, for backward compatibility
-    public CitizenApartmentService()
+    public CitizenApartmentService(UnitOfWork unit)
     {
-        _repository = new CitizenApartmentRepository(new QuanLyCanHoVaCuDan.Data.QuanLyCanHoVaCuDanContext());
+        _unitOfWork = unit;
     }
 
     // Constructor with DI
-    public CitizenApartmentService(ICitizenApartmentRepository repository)
-    {
-        _repository = repository;
-    }
+   
     public async Task<IEnumerable<CitizenApartmentDto>> GetAllCitizenApartmentsAsync()
     {
-        var entities = await _repository.GetAllCitizenApartmentsAsync();
+        var entities = await _unitOfWork.CitizenApartmentRepository.GetAllAsync();
         return entities.Select(entity => new CitizenApartmentDto
         {
             CitizenId = entity.CitizenId,
@@ -34,7 +33,7 @@ public class CitizenApartmentService : ICitizenApartmentService
     // Get a single CitizenApartment by citizenId and apartmentId, converted to a DTO
     public async Task<CitizenApartmentDto> GetCitizenApartmentAsync(int citizenId, int apartmentId)
     {
-        var entity = await _repository.GetCitizenApartmentAsync(citizenId, apartmentId);
+        var entity = await _unitOfWork.CitizenApartmentRepository.GetCitizenApartmentAsync(citizenId, apartmentId);
         return entity != null ? new CitizenApartmentDto
         {
             CitizenId = entity.CitizenId,
@@ -47,7 +46,7 @@ public class CitizenApartmentService : ICitizenApartmentService
     // Get all apartments by citizen, returned as a list of DTOs
     public async Task<IEnumerable<CitizenApartmentDto>> GetApartmentsByCitizenAsync(int citizenId)
     {
-        var entities = await _repository.GetApartmentsByCitizenAsync(citizenId);
+        var entities = await _unitOfWork.CitizenApartmentRepository.GetApartmentsByCitizenAsync(citizenId);
         return entities.Select(entity => new CitizenApartmentDto
         {
             CitizenId = entity.CitizenId,
@@ -60,7 +59,7 @@ public class CitizenApartmentService : ICitizenApartmentService
     // Get all citizens by apartment, returned as a list of DTOs
     public async Task<IEnumerable<CitizenApartmentDto>> GetCitizensByApartmentAsync(int apartmentId)
     {
-        var entities = await _repository.GetCitizensByApartmentAsync(apartmentId);
+        var entities = await _unitOfWork.CitizenApartmentRepository.GetCitizensByApartmentAsync(apartmentId);
         return entities.Select(entity => new CitizenApartmentDto
         {
             CitizenId = entity.CitizenId,
@@ -81,14 +80,14 @@ public class CitizenApartmentService : ICitizenApartmentService
             EndDate = citizenApartmentDto.EndDate
         };
 
-        await _repository.AddCitizenApartmentAsync(entity);
-        await _repository.SaveAsync();
+        await _unitOfWork.CitizenApartmentRepository.AddCitizenApartmentAsync(entity);
+        await _unitOfWork.CitizenApartmentRepository.SaveAsync();
     }
 
     // Update a CitizenApartment using the DTO
     public async Task UpdateCitizenApartmentAsync(CitizenApartmentDto citizenApartmentDto)
     {
-        var existingEntity = await _repository.GetCitizenApartmentAsync(citizenApartmentDto.CitizenId, citizenApartmentDto.ApartmentId);
+        var existingEntity = await _unitOfWork.CitizenApartmentRepository.GetCitizenApartmentAsync(citizenApartmentDto.CitizenId, citizenApartmentDto.ApartmentId);
 
         if (existingEntity == null)
         {
@@ -100,7 +99,8 @@ public class CitizenApartmentService : ICitizenApartmentService
 
         try
         {
-            await _repository.UpdateCitizenApartmentAsync(existingEntity);
+            await _unitOfWork.CitizenApartmentRepository.UpdateAsync(existingEntity);
+            await _unitOfWork.CitizenApartmentRepository.SaveAsync();
         }
         catch (DbUpdateConcurrencyException)
         {
@@ -112,19 +112,19 @@ public class CitizenApartmentService : ICitizenApartmentService
     // Delete a CitizenApartment by citizenId and apartmentId
     public async Task DeleteCitizenApartmentAsync(int citizenId, int apartmentId)
     {
-        await _repository.DeleteCitizenApartmentAsync(citizenId, apartmentId);
-        await _repository.SaveAsync();
+        await _unitOfWork.CitizenApartmentRepository.DeleteCitizenApartmentAsync(citizenId, apartmentId);
+        await _unitOfWork.CitizenApartmentRepository.SaveAsync();
     }
 
     // Check if a CitizenApartment exists by citizenId and apartmentId
     public async Task<bool> CitizenApartmentExistsAsync(int citizenId, int apartmentId)
     {
-        return await _repository.CitizenApartmentExistsAsync(citizenId, apartmentId);
+        return await _unitOfWork.CitizenApartmentRepository.CitizenApartmentExistsAsync(citizenId, apartmentId);
     }
 
     public async Task<IEnumerable<CitizenApartmentDto>> GetAllCitizenApartmentsByApartmentIdAsync(int id)
     {
-        var entities = await _repository.GetCitizensByApartmentAsync(id);
+        var entities = await _unitOfWork.CitizenApartmentRepository.GetCitizensByApartmentAsync(id);
         return entities.Select(entity => new CitizenApartmentDto
         {
             CitizenId = entity.CitizenId,
